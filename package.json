@@ -1,0 +1,28 @@
+{
+  "name": "music3.0",
+  "version": "1.0.0",
+  "description": "My playlist app with server functionality",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dustinrpatterson/music3.0.git"
+  },
+  "author": "Dustin Patterson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dustinrpatterson/music3.0/issues"
+  },
+  "homepage": "https://github.com/dustinrpatterson/music3.0#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "firebase": "^3.5.2",
+    "js-data": "^2.9.0",
+    "js-data-firebase": "^2.1.1",
+    "uuid": "^2.0.3"
+  }
+}

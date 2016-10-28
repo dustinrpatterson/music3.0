@@ -26,9 +26,17 @@ router.route('/:id?')
             return res.send(playlist)
         })
     })
-    .put(function(req, res, next){
-        res.send('Still under construction....')
+    .put(function (req, res, next) {
+        Playlist.editPlaylist(req.params.id, req.body, function (playlist) {
+            if (playlist.stack) { return next(playlist) }
+            return res.send(playlist)
+        })
     })
-    .delete(function(req, res, next){
-        res.send('Still under construction....')
+    .delete(function (req, res, next) {
+        Playlist.removeSong(req.params.id, req.body.songId, function(playlist){
+            if (playlist.stack){
+                return next(playlist)
+            }
+            return res.send(playlist)
+        })
     })

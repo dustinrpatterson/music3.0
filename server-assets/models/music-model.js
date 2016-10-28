@@ -30,6 +30,31 @@ function getById(id, query, cb){
     Playlist.find(id, formatQuery(query)).then(cb).catch(cb)
 }
 
+function editPlaylist(id, input, cb) {
+    Playlist.find(id).then(function(playlist){
+       playlist.name=input.name
+       playlist.downVotes=input.downVotes,
+       playlist.upVotes=input.upVotes,
+       playlist.songs=input.songs;
+       Playlist.update(playlist.id, playlist).then(function(){
+           DS.update('playlist', playlist.id, playlist)
+       .then(cb)
+       .catch(cb)
+   }).catch(cb)
+   }).catch(cb)
+}
+
+
+
+function removeSong(id, songId, cb) {
+    Playlist.find(id).then(function (playlist) {
+        playlist.songs[songId] = null
+        Playlist.update(playlist.id, playlist)
+            .then(cb)
+            .catch(cb)
+    }).catch(cb)
+}
+
 module.exports = {
     create,
     getAll,

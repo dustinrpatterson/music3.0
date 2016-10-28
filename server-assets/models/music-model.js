@@ -31,17 +31,31 @@ function getById(id, query, cb){
 }
 
 function editPlaylist(id, input, cb) {
-    Playlist.find(id).then(function(playlist){
-       playlist.name=input.name
-       playlist.downVotes=input.downVotes,
-       playlist.upVotes=input.upVotes,
-       playlist.songs=input.songs;
-       Playlist.update(playlist.id, playlist).then(function(){
-           DS.update('playlist', playlist.id, playlist)
-       .then(cb)
-       .catch(cb)
-   }).catch(cb)
-   }).catch(cb)
+    Playlist.find(id).then(function (playlist) {
+        if (input.vote && input.vote == "down") {
+            if (playlist.downVotes) {
+                playlist.downVotes++
+            } else {
+                playlist.downVotes = 1
+            }
+        }
+        if (input.vote && input.vote == "up") {
+            if (playlist.upVotes) {
+                playlist.upVotes++
+            } else {
+                playlist.upVotes = 1
+            }
+        }
+        if (input.name) {
+            playlist.name = input.name || {}
+        }
+        if (input.songs) {
+            playlist.songs = input.songs || {}
+        }
+        Playlist.update(playlist.id, playlist)
+            .then(cb)
+            .catch(cb)
+    }).catch(cb)
 }
 
 
@@ -58,5 +72,7 @@ function removeSong(id, songId, cb) {
 module.exports = {
     create,
     getAll,
-    getById
+    getById,
+    editPlaylist,
+    removeSong
 }

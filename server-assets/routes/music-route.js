@@ -27,13 +27,13 @@ router.route('/:id?')
         })
     })
     .put(function (req, res, next) {
-        Playlist.editPlaylist(req.params.id, req.body, function (playlist) {
+        Music.editPlaylist(req.params.id, req.body, function (playlist) {
             if (playlist.stack) { return next(playlist) }
             return res.send(playlist)
         })
     })
     .delete(function (req, res, next) {
-        Playlist.removeSong(req.params.id, req.body.songId, function(playlist){
+        Music.removeSong(req.params.id, req.body.songId, function(playlist){
             if (playlist.stack){
                 return next(playlist)
             }

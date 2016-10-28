@@ -1,8 +1,6 @@
-let uuid = require('node-uuid')
+let uuid = require('uuid')
     JsData = require('js-data'),
-    Schemator = require('js-data-schema'),
     FBAdapter = require('js-data-firebase'),
-    schemator = new Schemator(),
     DS = new JsData.DS()
 
 let fbAdapter = new FBAdapter({
@@ -16,11 +14,10 @@ function formatQuery(query){
     }
 }
 
-DS.registerAdapters('firebbase', fbAdapter, {default:true})
+DS.registerAdapter('firebase', fbAdapter, {default:true})
 
 module.exports = {
     DS,
     uuid,
-    schemator,
     formatQuery
 }

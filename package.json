@@ -19,8 +19,9 @@
   "homepage": "https://github.com/dustinrpatterson/music3.0#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "cors": "^2.8.1",
     "express": "^4.14.0",
-    "firebase": "^3.5.2",
+    "firebase": "^2.4.2",
     "js-data": "^2.9.0",
     "js-data-firebase": "^2.1.1",
     "uuid": "^2.0.3"
